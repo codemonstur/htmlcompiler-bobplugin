@@ -1,0 +1,25 @@
+name: bobhtmlcompiler
+version: 0.1.0
+dependencies:
+  - project: ../bobthebuilder
+    scope: provided
+  - project: ../htmlcompiler
+
+check-versions
+	  mvn versions:display-dependency-updates
+	  mvn versions:display-plugin-updates
+
+release-notes
+  	echo "[${PROJECT_NAME}] Writing release notes to src/docs/releases/release-${PROJECT_VERSION}.txt"
+	  echo "${PROJECT_VERSION}" > src/docs/releases/release-${PROJECT_VERSION}.txt
+	  echo "" >> src/docs/releases/release-${PROJECT_VERSION}.txt
+	  PREVIOUS_TAG = `git tag | sort -r | head -n 1`
+	  git log --pretty="%s" ${PREVIOUS_TAG}... master >> src/docs/releases/release-${PROJECT_VERSION}.txt
+
+deploy
+    bob build
+	  echo "[${PROJECT_NAME}] Tagging and pushing to github"
+	  git tag ${PROJECT_NAME}-${PROJECT_VERSION}
+	  git push && git push --tags
+  	echo "[${PROJECT_NAME}] Creating github release"
+	  hub release create -a target/${PROJECT_NAME}-${PROJECT_VERSION}.jar -a target/${PROJECT_NAME}-${PROJECT_VERSION}-javadoc.jar -a target/${PROJECT_NAME}-${PROJECT_VERSION}-sources.jar -F src/docs/releases/release-${PROJECT_VERSION}.txt ${PROJECT_NAME}-${PROJECT_VERSION}
