@@ -1,7 +1,7 @@
 package bobhtmlcompiler;
 
-import bobthebuilder.pojos.buildfile.Project;
-import bobthebuilder.pojos.internal.DescriptionAndInterface;
+import bobthebuildtool.pojos.buildfile.Project;
+import bobthebuildtool.pojos.internal.DescriptionAndInterface;
 
 public enum Main {;
 
