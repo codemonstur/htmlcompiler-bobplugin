@@ -1,7 +1,7 @@
 name: bobhtmlcompiler
 version: 0.1.0
 dependencies:
-  - project: ../bobthebuilder
+  - project: ../bobthebuildtool
     scope: provided
   - project: ../htmlcompiler
 
