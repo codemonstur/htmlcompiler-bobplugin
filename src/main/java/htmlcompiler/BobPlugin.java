@@ -1,4 +1,4 @@
-package bobhtmlcompiler;
+package htmlcompiler;
 
 import bobthebuildtool.pojos.buildfile.Project;
 import bobthebuildtool.services.Log;
@@ -10,11 +10,11 @@ import jcli.errors.InvalidCommandLine;
 import java.io.IOException;
 import java.util.Map;
 
-import static bobhtmlcompiler.CliHtmlCompile.newCompileCommandConfig;
-import static bobhtmlcompiler.CliHtmlHost.newHostCommandConfig;
+import static htmlcompiler.CliHtmlCompile.newCompileCommandConfig;
+import static htmlcompiler.CliHtmlHost.newHostCommandConfig;
 import static htmlcompiler.tools.Logger.newLogger;
 
-public enum Main {;
+public enum BobPlugin {;
 
     private static final String
         DESCRIPTION_COMPILE = "Compiles templates and plain HTML to compiled HTML",
@@ -22,9 +22,9 @@ public enum Main {;
         DESCRIPTION_CHECK = "Checks if various needed binaries are available in the path";
 
     public static void installPlugin(final Project project) {
-        project.addCommand("compile-html", DESCRIPTION_COMPILE, Main::compileHtml);
-        project.addCommand("host-frontend", DESCRIPTION_HOST, Main::hostFrontend);
-        project.addTarget("check-frontend-dependencies", DESCRIPTION_CHECK, Main::checkDependencies);
+        project.addCommand("compile-html", DESCRIPTION_COMPILE, BobPlugin::compileHtml);
+        project.addCommand("host-frontend", DESCRIPTION_HOST, BobPlugin::hostFrontend);
+        project.addTarget("check-frontend-dependencies", DESCRIPTION_CHECK, BobPlugin::checkDependencies);
     }
 
     private static int compileHtml(final Project project, final Map<String, String> environment, final String[] args)

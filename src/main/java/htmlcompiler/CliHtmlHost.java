@@ -1,4 +1,4 @@
-package bobhtmlcompiler;
+package htmlcompiler;
 
 import bobthebuildtool.pojos.buildfile.Project;
 import htmlcompiler.commands.Host.HostCommandConfig;
