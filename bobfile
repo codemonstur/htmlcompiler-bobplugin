@@ -6,10 +6,12 @@ dependencies:
     scope: provided
   - project: ../htmlcompiler
 
+-- Cleans then builds the code, prints a nice message first.
 build
     echo "[${PROJECT_NAME}] Building"
     run-target -i clean build
 
+-- Generates release notes in src/docs/releases/release-{version}.txt
 release-notes
   	echo "[${PROJECT_NAME}] Writing release notes to src/docs/releases/release-${PROJECT_VERSION}.txt"
     echo "${PROJECT_VERSION}" > src/docs/releases/release-${PROJECT_VERSION}.txt
@@ -17,6 +19,7 @@ release-notes
     PREVIOUS_TAG = `git tag | sort -r | head -n 1`
   	git log --pretty="%s" ${PREVIOUS_TAG}... master >> src/docs/releases/release-${PROJECT_VERSION}.txt
 
+-- Performs; clean, build, tag repo with version, push and finally upload binaries to github
 deploy
     echo "[${PROJECT_NAME}] Clean and build for deploy"
     run-target -i clean build
