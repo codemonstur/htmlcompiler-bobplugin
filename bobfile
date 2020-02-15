@@ -26,5 +26,5 @@ deploy
     echo "[${PROJECT_NAME}] Tagging and pushing to github"
     git tag ${PROJECT_NAME}-${PROJECT_VERSION}
     git push && git push --tags
-  	echo "[${PROJECT_NAME}] Creating github release"
+    echo "[${PROJECT_NAME}] Creating github release"
     hub release create -a target/${PROJECT_NAME}-${PROJECT_VERSION}.jar -F src/docs/releases/release-${PROJECT_VERSION}.txt ${PROJECT_NAME}-${PROJECT_VERSION}
