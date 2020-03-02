@@ -1,0 +1,8 @@
+0.2.1
+
+Fixes in logging.
+Newer version of HtmlCompiler:
+- Fixed logging bug in host command
+- Added some known attributes
+- Removed majority of template engines
+
