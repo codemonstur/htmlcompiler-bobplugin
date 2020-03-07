@@ -1,0 +1,3 @@
+4.1.0
+
+Matched version number of bobpplugin with htmlcompiler
