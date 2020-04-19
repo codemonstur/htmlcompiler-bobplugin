@@ -1,6 +1,7 @@
 name: htmlcompiler
 packaging: bob-plugin
-version: 4.1.0
+enablePreview: false
+version: 4.1.0-1
 dependencies:
   - project: ../bobthebuildtool
     scope: provided
