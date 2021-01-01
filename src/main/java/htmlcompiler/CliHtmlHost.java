@@ -13,7 +13,7 @@ import static jcli.CliParserBuilder.newCliParser;
 
 public class CliHtmlHost {
 
-    @CliOption(name = 'c', longName = "validation-config", defaultValue = "src/main/websrc/validation.json")
+    @CliOption(name = 'c', longName = "validation-config", defaultValue = "src/main/webcnf/validation.json")
     public String validation;
     @CliOption(name = 't', longName = "type", defaultValue = "jsoup")
     public CompilerType type;
@@ -26,7 +26,7 @@ public class CliHtmlHost {
     public int port;
     @CliOption(longName = "disable-mock-api")
     public boolean disableMockApi;
-    @CliOption(longName = "mock-api-spec", defaultValue = "src/main/websrc/requests.json")
+    @CliOption(longName = "mock-api-spec", defaultValue = "src/main/webcnf/requests.json")
     public String mockApiSpecification;
 
     @CliOption(name = 'd', longName = "source-dirs", defaultValue = "src/main/webinc")

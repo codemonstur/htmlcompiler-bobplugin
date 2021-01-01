@@ -12,7 +12,7 @@ import static jcli.CliParserBuilder.newCliParser;
 
 public class CliHtmlCompile {
 
-    @CliOption(name = 'c', longName = "validation-config", defaultValue = "src/main/websrc/validation.json")
+    @CliOption(name = 'c', longName = "validation-config", defaultValue = "src/main/webcnf/validation.json")
     public String validation;
     @CliOption(name = 't', longName = "type", defaultValue = "jsoup")
     public CompilerType type;
