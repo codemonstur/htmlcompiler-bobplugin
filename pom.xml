@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.github.codemonstur</groupId>
             <artifactId>htmlcompiler</artifactId>
-            <version>4.0.0</version>
+            <version>4.4.0</version>
         </dependency>
     </dependencies>
 </project>
