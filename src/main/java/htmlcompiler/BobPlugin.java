@@ -1,6 +1,7 @@
 package htmlcompiler;
 
 import bobthebuildtool.pojos.buildfile.Project;
+import bobthebuildtool.pojos.error.VersionTooOld;
 import bobthebuildtool.services.Log;
 import htmlcompiler.commands.Compile;
 import htmlcompiler.commands.Dependencies;
@@ -10,6 +11,7 @@ import jcli.errors.InvalidCommandLine;
 import java.io.IOException;
 import java.util.Map;
 
+import static bobthebuildtool.services.Update.requireBobVersion;
 import static htmlcompiler.CliHtmlCompile.newCompileCommandConfig;
 import static htmlcompiler.CliHtmlHost.newHostCommandConfig;
 import static htmlcompiler.tools.Logger.newLogger;
@@ -21,10 +23,11 @@ public enum BobPlugin {;
         DESCRIPTION_HOST = "Monitors frontend code for changes and compiles and hosts on localhost:8080",
         DESCRIPTION_CHECK = "Checks if various needed binaries are available in the path";
 
-    public static void installPlugin(final Project project) {
+    public static void installPlugin(final Project project) throws VersionTooOld {
+        requireBobVersion("0.3.0");
         project.addCommand("compile-html", DESCRIPTION_COMPILE, BobPlugin::compileHtml);
         project.addCommand("host-frontend", DESCRIPTION_HOST, BobPlugin::hostFrontend);
-        project.addTarget("check-frontend-dependencies", DESCRIPTION_CHECK, BobPlugin::checkDependencies);
+        project.addTask("check-frontend-dependencies", DESCRIPTION_CHECK, BobPlugin::checkDependencies);
     }
 
     private static int compileHtml(final Project project, final Map<String, String> environment, final String[] args)
