@@ -1,7 +1,7 @@
 name: htmlcompiler
 packaging: bob-plugin
 enablePreview: false
-version: 4.7.0
+version: 4.8.0
 dependencies:
   - project: ../bobthebuildtool
     scope: provided
@@ -9,14 +9,14 @@ dependencies:
 
 -- Cleans then builds the code, prints a nice message first.
 build
-    echo [${PROJECT_NAME}] Building
+    echo [${PROJECT_NAME}-bobplugin] Building
     run-task -i clean build
 
 -- Generates release notes in src/docs/releases/release-{version}.txt
 release-notes
-  	echo [${PROJECT_NAME}] Writing release notes to src/docs/releases/release-${PROJECT_VERSION}.txt
-    echo "${PROJECT_VERSION}" > src/docs/releases/release-${PROJECT_VERSION}.txt
-    echo "" >> src/docs/releases/release-${PROJECT_VERSION}.txt
+  	echo [${PROJECT_NAME}] Copying release notes from parent
+    cp ../htmlcompiler/src/docs/releases/release-${PROJECT_VERSION}.txt src/docs/releases/
+  	echo [${PROJECT_NAME}] Adding actions from this project
     PREVIOUS_TAG = `git tag | sort -r | head -n 1`
   	git log --pretty="%s" ${PREVIOUS_TAG}... master >> src/docs/releases/release-${PROJECT_VERSION}.txt
 
