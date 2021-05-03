@@ -14,20 +14,20 @@ build
 
 -- Generates release notes in src/docs/releases/release-{version}.txt
 release-notes
-  	echo [${PROJECT_NAME}] Copying release notes from parent
+  	echo [${PROJECT_NAME}-bobplugin] Copying release notes from parent
     cp ../htmlcompiler/src/docs/releases/release-${PROJECT_VERSION}.txt src/docs/releases/
-  	echo [${PROJECT_NAME}] Adding actions from this project
+  	echo [${PROJECT_NAME}-bobplugin] Adding actions from this project
     PREVIOUS_TAG = `git tag | sort -r | head -n 1`
   	git log --pretty="%s" ${PREVIOUS_TAG}... master >> src/docs/releases/release-${PROJECT_VERSION}.txt
 
 -- Performs; clean, build, tag repo with version, push and finally upload binaries to github
 deploy
-    echo "[${PROJECT_NAME}] Clean and build for deploy"
+    echo "[${PROJECT_NAME}-bobplugin] Clean and build for deploy"
     run-task -i clean build
-    echo "[${PROJECT_NAME}] Tagging and pushing to github"
+    echo "[${PROJECT_NAME}-bobplugin] Tagging and pushing to github"
     git tag ${PROJECT_NAME}-${PROJECT_VERSION}
     git push && git push --tags
-    echo "[${PROJECT_NAME}] Creating github release"
+    echo "[${PROJECT_NAME}-bobplugin] Creating github release"
     hub release create -a target/${PROJECT_NAME}-${PROJECT_VERSION}.jar -F src/docs/releases/release-${PROJECT_VERSION}.txt ${PROJECT_NAME}-${PROJECT_VERSION}
 
 install-local
