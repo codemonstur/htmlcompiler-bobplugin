@@ -2,7 +2,6 @@ package htmlcompiler;
 
 import bobthebuildtool.pojos.buildfile.Project;
 import htmlcompiler.commands.Host.HostCommandConfig;
-import htmlcompiler.pojos.compile.CompilerType;
 import jcli.annotations.CliOption;
 import jcli.errors.InvalidCommandLine;
 
@@ -15,8 +14,6 @@ public class CliHtmlHost {
 
     @CliOption(name = 'c', longName = "validation-config", defaultValue = "src/main/webcnf/validation.json")
     public String validation;
-    @CliOption(name = 't', longName = "type", defaultValue = "jsoup")
-    public CompilerType type;
     @CliOption(name = 'e', longName = "keep-extension")
     public boolean keepExtensions;
     @CliOption(name = 'w', longName = "dont-walk-tree")
@@ -48,7 +45,6 @@ public class CliHtmlHost {
         config.hostedPaths = new Path[] { toStaticFilesPath(project), toCompiledFilesPath(project) };
         config.requestApiSpecification = arguments.mockApiSpecification;
         config.validation = arguments.validation;
-        config.type = arguments.type;
         config.watchedDirectories = arguments.watchedDirectories;
 
         return config;

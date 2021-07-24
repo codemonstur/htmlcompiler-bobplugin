@@ -24,7 +24,7 @@ public enum BobPlugin {;
         DESCRIPTION_CHECK = "Checks if various needed binaries are available in the path";
 
     public static void installPlugin(final Project project) throws VersionTooOld {
-        requireBobVersion("0.3.0");
+        requireBobVersion("5");
         project.addCommand("compile-html", DESCRIPTION_COMPILE, BobPlugin::compileHtml);
         project.addCommand("host-frontend", DESCRIPTION_HOST, BobPlugin::hostFrontend);
         project.addTask("check-frontend-dependencies", DESCRIPTION_CHECK, BobPlugin::checkDependencies);

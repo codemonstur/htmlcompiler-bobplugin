@@ -2,7 +2,6 @@ package htmlcompiler;
 
 import bobthebuildtool.pojos.buildfile.Project;
 import htmlcompiler.commands.Compile.CompileCommandConfig;
-import htmlcompiler.pojos.compile.CompilerType;
 import jcli.annotations.CliOption;
 import jcli.errors.InvalidCommandLine;
 
@@ -14,8 +13,6 @@ public class CliHtmlCompile {
 
     @CliOption(name = 'c', longName = "validation-config", defaultValue = "src/main/webcnf/validation.json")
     public String validation;
-    @CliOption(name = 't', longName = "type", defaultValue = "jsoup")
-    public CompilerType type;
     @CliOption(name = 'e', longName = "keep-extension")
     public boolean keepExtensions;
     @CliOption(name = 'w', longName = "dont-walk-tree")
@@ -32,7 +29,6 @@ public class CliHtmlCompile {
         config.baseDir = project.parentDir;
         config.replaceExtension = !arguments.keepExtensions;
         config.validation = arguments.validation;
-        config.type = arguments.type;
         config.recursive = !arguments.dontWalkTree;
 
         return config;
