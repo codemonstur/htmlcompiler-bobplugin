@@ -20,13 +20,13 @@
         <dependency>
             <groupId>com.github.codemonstur</groupId>
             <artifactId>bobthebuildtool</artifactId>
-            <version>5</version>
+            <version>0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.codemonstur</groupId>
             <artifactId>htmlcompiler</artifactId>
-            <version>5.0.0</version>
+            <version>5.1.0</version>
         </dependency>
     </dependencies>
 </project>
