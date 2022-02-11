@@ -1,0 +1,4 @@
+5.1.0
+
+Added warning duplicate external file inline
+Add compatibility with current version of bob
