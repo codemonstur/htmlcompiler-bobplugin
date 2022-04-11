@@ -14,6 +14,9 @@ import java.util.Map;
 import static bobthebuildtool.services.Update.requireBobVersion;
 import static htmlcompiler.CliHtmlCompile.newCompileCommandConfig;
 import static htmlcompiler.CliHtmlHost.newHostCommandConfig;
+import static htmlcompiler.commands.Compile.executeCompile;
+import static htmlcompiler.commands.Dependencies.executeDependencies;
+import static htmlcompiler.commands.Host.executeHost;
 import static htmlcompiler.tools.Logger.newLogger;
 
 public enum BobPlugin {;
@@ -32,18 +35,18 @@ public enum BobPlugin {;
 
     private static int compileHtml(final Project project, final Map<String, String> environment, final String[] args)
             throws InvalidCommandLine, IOException {
-        Compile.executeCompile(newLogger(Log::logInfo, Log::logWarning), newCompileCommandConfig(project, environment, args));
+        executeCompile(newLogger(Log::logInfo, Log::logWarning, Log::logError), newCompileCommandConfig(project, environment, args));
         return 0;
     }
 
     private static int hostFrontend(final Project project, final Map<String, String> environment, final String[] args)
             throws IOException, InterruptedException, InvalidCommandLine {
-        Host.executeHost(newLogger(Log::logInfo, Log::logWarning), newHostCommandConfig(project, environment, args));
+        executeHost(newLogger(Log::logInfo, Log::logWarning, Log::logError), newHostCommandConfig(project, environment, args));
         return 0;
     }
 
     private static void checkDependencies(final Project project, final Map<String, String> environment) {
-        Dependencies.executeDependencies(newLogger(Log::logInfo, Log::logWarning));
+        executeDependencies(newLogger(Log::logInfo, Log::logWarning, Log::logError));
     }
 
 }
