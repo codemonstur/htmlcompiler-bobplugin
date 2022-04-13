@@ -2,6 +2,7 @@ package htmlcompiler;
 
 import bobthebuildtool.pojos.buildfile.Project;
 import htmlcompiler.commands.Compile.CompileCommandConfig;
+import htmlcompiler.compilers.JsCompiler;
 import jcli.annotations.CliOption;
 import jcli.errors.InvalidCommandLine;
 
@@ -17,6 +18,8 @@ public class CliHtmlCompile {
     public boolean keepExtensions;
     @CliOption(name = 'w', longName = "dont-walk-tree")
     public boolean dontWalkTree;
+    @CliOption(name = 'j', longName = "js-compressor", defaultValue = "gcc-advanced", description = "Options: gcc-simple, gcc-bundle, gcc-whitespace, gcc-advanced, yui")
+    public String jsCompiler;
 
     public static CompileCommandConfig newCompileCommandConfig(final Project project, final Map<String, String> environment, final String[] args) throws InvalidCommandLine {
         final CliHtmlCompile arguments = newCliParser(CliHtmlCompile::new).parse(args);
@@ -30,6 +33,7 @@ public class CliHtmlCompile {
         config.replaceExtension = !arguments.keepExtensions;
         config.validation = arguments.validation;
         config.recursive = !arguments.dontWalkTree;
+        config.jsCompressorType =  arguments.jsCompiler;
 
         return config;
     }
