@@ -18,7 +18,7 @@ public class CliHtmlCompile {
     public boolean keepExtensions;
     @CliOption(name = 'w', longName = "dont-walk-tree")
     public boolean dontWalkTree;
-    @CliOption(name = 'j', longName = "js-compressor", defaultValue = "gcc-advanced", description = "Options: gcc-simple, gcc-bundle, gcc-whitespace, gcc-advanced, yui")
+    @CliOption(name = 'j', longName = "js-compressor", defaultValue = "gcc-simple", description = "Options: gcc-simple, gcc-bundle, gcc-whitespace, gcc-advanced, yui")
     public String jsCompiler;
 
     public static CompileCommandConfig newCompileCommandConfig(final Project project, final Map<String, String> environment, final String[] args) throws InvalidCommandLine {
