@@ -23,6 +23,8 @@ public class CliHtmlCompile {
 
     @CliOption(longName = "no-linting", description = "Disable checks on html tag validity")
     public boolean disableLinting;
+    @CliOption(longName = "deprecated-tags", description = "Enables deprecated tags")
+    public boolean deprecatedTags;
     @CliOption(longName = "no-compression", description = "Disable all forms of compression: html, css, js")
     public boolean disableCompression;
     @CliOption(longName = "no-html-compression", description = "Disable HTML compression")
@@ -50,6 +52,7 @@ public class CliHtmlCompile {
         config.htmlCompressionEnabled = !arguments.disableHtmlCompression;
         config.cssCompressionEnabled = !arguments.disableCssCompression;
         config.jsCompressionEnabled = !arguments.disableJsCompression;
+        config.deprecatedTagsEnabled = arguments.deprecatedTags;
 
         return config;
     }
