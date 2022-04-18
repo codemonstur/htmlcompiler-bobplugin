@@ -21,6 +21,17 @@ public class CliHtmlCompile {
     @CliOption(name = 'j', longName = "js-compressor", defaultValue = "gcc-simple", description = "Options: gcc-simple, gcc-bundle, gcc-whitespace, gcc-advanced, yui")
     public String jsCompiler;
 
+    @CliOption(longName = "no-linting", description = "Disable checks on html tag validity")
+    public boolean disableLinting;
+    @CliOption(longName = "no-compression", description = "Disable all forms of compression: html, css, js")
+    public boolean disableCompression;
+    @CliOption(longName = "no-html-compression", description = "Disable HTML compression")
+    public boolean disableHtmlCompression;
+    @CliOption(longName = "no-css-compression", description = "Disable CSS compression")
+    public boolean disableCssCompression;
+    @CliOption(longName = "no-js-compression", description = "Disable JS compression")
+    public boolean disableJsCompression;
+
     public static CompileCommandConfig newCompileCommandConfig(final Project project, final Map<String, String> environment, final String[] args) throws InvalidCommandLine {
         final CliHtmlCompile arguments = newCliParser(CliHtmlCompile::new).parse(args);
 
@@ -34,6 +45,11 @@ public class CliHtmlCompile {
         config.validation = arguments.validation;
         config.recursive = !arguments.dontWalkTree;
         config.jsCompressorType =  arguments.jsCompiler;
+        config.checksEnabled = !arguments.disableLinting;
+        config.compressionEnabled = !arguments.disableCompression;
+        config.htmlCompressionEnabled = !arguments.disableHtmlCompression;
+        config.cssCompressionEnabled = !arguments.disableCssCompression;
+        config.jsCompressionEnabled = !arguments.disableJsCompression;
 
         return config;
     }

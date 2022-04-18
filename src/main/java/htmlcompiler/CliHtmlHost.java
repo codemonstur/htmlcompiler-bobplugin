@@ -21,6 +21,17 @@ public class CliHtmlHost {
     @CliOption(name = 'j', longName = "js-compressor", defaultValue = "gcc-simple", description = "Options: gcc-simple, gcc-bundle, gcc-whitespace, gcc-advanced, yui")
     public String jsCompiler;
 
+    @CliOption(longName = "no-linting", description = "Disable checks on html tag validity")
+    public boolean disableLinting;
+    @CliOption(longName = "no-compression", description = "Disable all forms of compression: html, css, js")
+    public boolean disableCompression;
+    @CliOption(longName = "no-html-compression", description = "Disable HTML compression")
+    public boolean disableHtmlCompression;
+    @CliOption(longName = "no-css-compression", description = "Disable CSS compression")
+    public boolean disableCssCompression;
+    @CliOption(longName = "no-js-compression", description = "Disable JS compression")
+    public boolean disableJsCompression;
+
     @CliOption(name = 'p', longName = "port", defaultValue = "8080")
     public int port;
     @CliOption(longName = "disable-mock-api")
@@ -49,6 +60,11 @@ public class CliHtmlHost {
         config.validation = arguments.validation;
         config.watchedDirectories = arguments.watchedDirectories;
         config.jsCompressorType = arguments.jsCompiler;
+        config.checksEnabled = !arguments.disableLinting;
+        config.compressionEnabled = !arguments.disableCompression;
+        config.htmlCompressionEnabled = !arguments.disableHtmlCompression;
+        config.cssCompressionEnabled = !arguments.disableCssCompression;
+        config.jsCompressionEnabled = !arguments.disableJsCompression;
 
         return config;
     }
