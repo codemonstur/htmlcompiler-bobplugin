@@ -33,6 +33,8 @@ public class CliHtmlCompile {
     public boolean disableCssCompression;
     @CliOption(longName = "no-js-compression", description = "Disable JS compression")
     public boolean disableJsCompression;
+    @CliOption(longName = "js-caching", description = "Enables compressed JavaScript caching")
+    public boolean jsCaching;
 
     public static CompileCommandConfig newCompileCommandConfig(final Project project, final Map<String, String> environment, final String[] args) throws InvalidCommandLine {
         final CliHtmlCompile arguments = newCliParser(CliHtmlCompile::new).parse(args);
@@ -53,6 +55,7 @@ public class CliHtmlCompile {
         config.cssCompressionEnabled = !arguments.disableCssCompression;
         config.jsCompressionEnabled = !arguments.disableJsCompression;
         config.deprecatedTagsEnabled = arguments.deprecatedTags;
+        config.cacheJsCompression = arguments.jsCaching;
 
         return config;
     }
